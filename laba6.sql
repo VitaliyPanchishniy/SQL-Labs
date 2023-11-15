@@ -9,35 +9,29 @@ WHERE c.region = r.uuid
 AND r.name = 'Nord';
 
 
-SET NAMES utf8;
-SET time_zone = '+00:00';
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+CREATE TABLE Cities (
+    city_id INT PRIMARY KEY,
+    city_name VARCHAR(255)
+);
 
-DROP TABLE IF EXISTS `Connections`;
-CREATE TABLE `Connections` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `sation1_id` int(10) unsigned NOT NULL,
-  `station2_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE MetroLines (
+    line_id INT PRIMARY KEY,
+    city_id INT,
+    line_name VARCHAR(255),
+    FOREIGN KEY (city_id) REFERENCES Cities(city_id)
+);
 
+CREATE TABLE Stations (
+    station_id INT PRIMARY KEY,
+    line_id INT,
+    station_name VARCHAR(255),
+    FOREIGN KEY (line_id) REFERENCES MetroLines(line_id)
+);
 
-DROP TABLE IF EXISTS `Lines`;
-CREATE TABLE `Lines` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` text COLLATE utf8_bin NOT NULL,
-  `color` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
-DROP TABLE IF EXISTS `Stations`;
-CREATE TABLE `Stations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` int(11) NOT NULL,
-  `line_id` int(10) unsigned NOT NULL,
-  `previous_id` int(10) unsigned NOT NULL,
-  `next_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE Connections (
+    connection_id INT PRIMARY KEY,
+    station_id_1 INT,
+    station_id_2 INT,
+    FOREIGN KEY (station_id_1) REFERENCES Stations(station_id),
+    FOREIGN KEY (station_id_2) REFERENCES Stations(station_id)
+);
