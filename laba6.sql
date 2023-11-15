@@ -11,20 +11,20 @@ AND r.name = 'Nord';
 
 CREATE TABLE cities (
     city_id INT PRIMARY KEY,
-    city_name VARCHAR(255)
+    city_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE metroLines (
     line_id INT PRIMARY KEY,
     city_id INT,
-    line_name VARCHAR(255),
+    line_name VARCHAR(255) NOT NULL,
     FOREIGN KEY (city_id) REFERENCES cities(city_id)
 );
 
 CREATE TABLE stations (
     station_id INT PRIMARY KEY,
     line_id INT,
-    station_name VARCHAR(255),
+    station_name VARCHAR(255) NOT NULL,
     FOREIGN KEY (line_id) REFERENCES metroLines(line_id)
 );
 
