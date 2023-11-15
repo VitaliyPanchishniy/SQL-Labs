@@ -17,8 +17,8 @@ CREATE TABLE tasks (
     author_id INT,
     task_description TEXT NOT NULL,
     task_due_date DATE,
-    FOREIGN KEY (project_id) REFERENCES Projects(project_id),
-    FOREIGN KEY (author_id) REFERENCES Users(user_id)
+    FOREIGN KEY (project_id) REFERENCES projects(project_id),
+    FOREIGN KEY (author_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE task_creators (
@@ -37,7 +37,7 @@ CREATE TABLE files (
     file_type VARCHAR(50),
     linked_to_task_id INT,
     linked_to_project_id INT,
-    FOREIGN KEY (linked_to_task_id) REFERENCES Tasks(task_id),
-    FOREIGN KEY (linked_to_project_id) REFERENCES Projects(project_id)
+    FOREIGN KEY (linked_to_task_id) REFERENCES tasks(task_id),
+    FOREIGN KEY (linked_to_project_id) REFERENCES projects(project_id)
 );
 
