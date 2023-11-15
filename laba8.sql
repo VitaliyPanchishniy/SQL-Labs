@@ -1,17 +1,17 @@
-CREATE TABLE Users (
+CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
     
 );
 
-CREATE TABLE Projects (
+CREATE TABLE projects (
     project_id INT PRIMARY KEY AUTO_INCREMENT,
     project_name VARCHAR(100) NOT NULL,
     
 );
 
 
-CREATE TABLE Tasks (
+CREATE TABLE tasks (
     task_id INT PRIMARY KEY AUTO_INCREMENT,
     project_id INT,
     author_id INT,
@@ -21,7 +21,7 @@ CREATE TABLE Tasks (
     FOREIGN KEY (author_id) REFERENCES Users(user_id)
 );
 
-CREATE TABLE TaskCreators (
+CREATE TABLE task_creators (
     task_id INT,
     assignee_id INT,
     FOREIGN KEY (task_id) REFERENCES Tasks(task_id),
@@ -30,7 +30,7 @@ CREATE TABLE TaskCreators (
 );
 
 
-CREATE TABLE Files (
+CREATE TABLE files (
     file_id INT PRIMARY KEY AUTO_INCREMENT,
     file_name VARCHAR(255) NOT NULL,
     file_url VARCHAR(255) NOT NULL,
