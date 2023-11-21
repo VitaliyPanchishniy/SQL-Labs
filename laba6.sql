@@ -18,20 +18,22 @@ CREATE TABLE metroLines (
     id INT PRIMARY KEY,
     city_id INT,
     line_name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id) REFERENCES cities(id)
+    FOREIGN KEY (city_id) REFERENCES cities(id)
 );
 
 CREATE TABLE stations (
     id INT PRIMARY KEY,
     line_id INT,
     station_name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id) REFERENCES metroLines(id)
+    FOREIGN KEY (line_id) REFERENCES metroLines(id)
 );
 
 CREATE TABLE connections (
     id INT PRIMARY KEY,
-    previous_station_id INT,
-    next_station_id_2 INT,
+    previous_station_id INT,NOT NULL,
+    netx_station_id INT,
+    perehid_station_id INT, NOT NULL,
     FOREIGN KEY (previous_station_id) REFERENCES stations(id),
-    FOREIGN KEY (next_station_id_2) REFERENCES stations(id)
+    FOREIGN KEY (perehid_station_id) REFERENCES stations(id),
+    FOREIGN KEY (netx_station_id) REFERENCES stations(id)
 );
