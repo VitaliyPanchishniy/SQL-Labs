@@ -10,28 +10,28 @@ AND r.name = 'Nord';
 
 
 CREATE TABLE cities (
-    city_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     city_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE metroLines (
-    line_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     city_id INT,
     line_name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (city_id) REFERENCES cities(city_id)
+    FOREIGN KEY (id) REFERENCES cities(id)
 );
 
 CREATE TABLE stations (
-    station_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     line_id INT,
     station_name VARCHAR(255) NOT NULL,
-    FOREIGN KEY (line_id) REFERENCES metroLines(line_id)
+    FOREIGN KEY (id) REFERENCES metroLines(id)
 );
 
 CREATE TABLE connections (
-    connection_id INT PRIMARY KEY,
-    station_id_1 INT,
-    station_id_2 INT,
-    FOREIGN KEY (station_id_1) REFERENCES stations(station_id),
-    FOREIGN KEY (station_id_2) REFERENCES stations(station_id)
+    id INT PRIMARY KEY,
+    previous_station_id INT,
+    next_station_id_2 INT,
+    FOREIGN KEY (previous_station_id) REFERENCES stations(id),
+    FOREIGN KEY (next_station_id_2) REFERENCES stations(id)
 );
