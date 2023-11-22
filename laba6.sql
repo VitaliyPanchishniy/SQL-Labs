@@ -32,8 +32,14 @@ CREATE TABLE connections (
     id INT PRIMARY KEY,
     previous_station_id INT,NOT NULL,
     netx_station_id INT,NOT NULL,
-    perehid_station_id INT,
     FOREIGN KEY (previous_station_id) REFERENCES stations(id),
-    FOREIGN KEY (perehid_station_id) REFERENCES stations(id),
     FOREIGN KEY (netx_station_id) REFERENCES stations(id)
+);
+
+CREATE TABLE perehids (
+    id INT PRIMARY KEY,
+    from_station_id INT NOT NULL,
+    to_station_id INT NOT NULL,
+    FOREIGN KEY (from_station_id) REFERENCES stations(id),
+    FOREIGN KEY (to_station_id) REFERENCES stations(id)
 );
