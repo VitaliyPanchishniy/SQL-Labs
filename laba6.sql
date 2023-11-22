@@ -24,15 +24,15 @@ CREATE TABLE metroLines (
 CREATE TABLE stations (
     id INT PRIMARY KEY,
     line_id INT,
-    station_name VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     FOREIGN KEY (line_id) REFERENCES metroLines(id)
 );
 
 CREATE TABLE connections (
     id INT PRIMARY KEY,
     previous_station_id INT,NOT NULL,
-    netx_station_id INT,
-    perehid_station_id INT, NOT NULL,
+    netx_station_id INT,NOT NULL,
+    perehid_station_id INT,
     FOREIGN KEY (previous_station_id) REFERENCES stations(id),
     FOREIGN KEY (perehid_station_id) REFERENCES stations(id),
     FOREIGN KEY (netx_station_id) REFERENCES stations(id)
